@@ -2,6 +2,7 @@ import re
 import json
 import copy
 import string
+import numpy as np
 
 def compare_clean_golden_ext_with_oie_ext(ext_g,ext_oie):
 	ext_oie = ext_oie.split('\t')
@@ -222,11 +223,13 @@ def calc_metrics(gold, exts, default_passive = True, show = False):
 			if tp_dict[e]:
 				tp+=1
 			if show:
-				print('The state of golden dict after processing of this extraction ("'+e+'"): ')
+				print('The state of golden dict after processing of this extraction ("'+e+'"): ',sno)
 				print(json.dumps(state_dict,indent=2,ensure_ascii=False).encode('utf8').decode())
 		tpl.append(tp)
 		fpl.append(fp-tp)
 		if show:
+			# print(fpl)
+			# print(tp,fp)
 			print('After processing all the extractions')
 			print(ext_l)
 			print('The state of golden dict is (of this sentence)')
@@ -329,6 +332,8 @@ def calc_metrics(gold, exts, default_passive = True, show = False):
 	r = sum(tpl)/(sum(tpl)+sum(fnl)+sum(missing_fn)) if (sum(tpl)+sum(fnl)+sum(missing_fn)) != 0 else 0
 	f = 2*p*r/(p+r) if (p+r) != 0 else 0
 
+	print('  ',[b for a in ([x]*10 for x in range(8)) for b in a][1:])
+	print('  ',(list(np.arange(1,10))+[0])*8)
 	print('TP',tpl,len(tpl))
 	print('FP',fpl)
 	print('FN',fnl)
@@ -351,7 +356,7 @@ def calc_metrics(gold, exts, default_passive = True, show = False):
 # exit()
 
 import glob
-ml = glob.glob('extractions/*.txt')
+ml = glob.glob('extractions/*kesh*.txt')
 default_passive = True
 show = False
 
@@ -395,5 +400,5 @@ plt.xticks(x,nms)
 
 plt.legend(['recall','precision','f-score'])
 
-plt.show()
+# plt.show()
 
