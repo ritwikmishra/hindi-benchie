@@ -17,3 +17,6 @@ file = open('sents.pkl','wb')
 pickle.dump(ml,file)
 file.close()
 
+file = open('sents.txt','w')
+file.write('\n'.join(ml))
+file.close()
