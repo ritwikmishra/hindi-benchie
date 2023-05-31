@@ -12,11 +12,11 @@ for line in content:
 			ml.append(' '.join(line.split('\t')[1:]).strip())
 file.close()
 
-print(ml[:3])
-file = open('sents.pkl','wb')
-pickle.dump(ml,file)
-file.close()
+# print(ml[:3])
+# file = open('sents.pkl','wb')
+# pickle.dump(ml,file)
+# file.close()
 
-file = open('sents.txt','w')
-file.write('\n'.join(ml))
-file.close()
+# file = open('sents.txt','w')
+# file.write('\n'.join(ml))
+# file.close()

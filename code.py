@@ -356,7 +356,7 @@ def calc_metrics(gold, exts, default_passive = True, show = False):
 # exit()
 
 import glob
-ml = glob.glob('extractions/*kesh*.txt')
+ml = glob.glob('extractions/benchie*.txt')
 default_passive = True
 show = False
 
@@ -367,6 +367,8 @@ gold = [x.strip() for x in file.readlines()]
 file.close()
 
 for fname in ml:
+	# if 'indie' not in fname and 'keshav' not in fname:
+	# 	continue
 	print('-'*100,fname,'-'*100)
 	nms.append(fname.replace('extractions/',''))
 	file = open(fname,'r')
